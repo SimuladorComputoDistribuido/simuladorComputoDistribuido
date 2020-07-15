@@ -36,7 +36,7 @@ contiene las bibliografías usadas en el curso.
 Hay también dos scripts:
 - `elimina.sh` que se encarga de eliminar todos los archivos generados del
   repositorio local y
-- 'bib.sh' que compila el archivo .tex las veces necesarias para generar la
+- `bib.sh` que compila el archivo .tex las veces necesarias para generar la
   bibliografía, el índice y las referencias.
 
 ## Descarga y Ejecución
