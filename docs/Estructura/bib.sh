@@ -1,0 +1,4 @@
+pdflatex EstructuraDeSistema.tex
+bibtex EstructuraDeSistema
+pdflatex EstructuraDeSistema.tex
+pdflatex EstructuraDeSistema.tex 

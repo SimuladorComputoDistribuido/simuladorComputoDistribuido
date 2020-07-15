@@ -1,0 +1,272 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{dirtree}
+\usepackage{hyperref}
+\usepackage[nottoc]{tocbibind}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\graphicspath{ {imagenes/} }
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,
+    urlcolor=cyan,
+    citecolor=black
+}
+
+\title{\bf Estructura para Proyectos de Software}
+\author{Jerónimo Almeida Rodríguez}
+\date{\today}
+
+\pagestyle{fancy}
+\lhead{Jerónimo Almeida}
+\chead{Simulador C.D.}
+\rhead{Alan Arteaga}
+\lfoot{jalrod@ciencias.unam.mx}
+\rfoot{alanarteagav@ciencias.unam.mx}
+
+\begin{document}
+\begin{titlepage}
+    \centering
+    {\scshape\Huge Universidad Nacional Autónoma de México \par}
+    \vspace{2cm}
+    {\scshape\huge Proyecto de Simulador de Cómputo Distribuido \par}
+    \vspace{2cm}
+    {\Large\textsc Jerónimo Almeida Rodríguez \par}
+    \vspace{.5cm}
+    {\large\texttt{ jalrod@ciencias.unam.mx}\par}
+    \vspace{0.5cm}
+    {\Large\textsc Alan Ernesto Arteaga Vázquez \par}
+    \vspace{.5cm}
+    {\large\texttt{ alanarteagav@ciencias.unam.mx}\par}
+    \vspace{2cm}
+    \vfill
+    \begin{figure}[hb!]
+        \includegraphics[width=.3\textwidth]
+            {../../logos/escudo_f-ciencias.png}\hfill
+        \includegraphics[width=.3\textwidth]
+            {../../logos/Escudo_UNAM.png}\hfill
+    \end{figure}
+\end{titlepage}
+%
+\tableofcontents
+\newpage
+
+\section{Reglas de Trabajo.}
+\subsection{Reuniones.}{
+  \begin{itemize}
+    \item{¿Qué se hizo desde la última reunión?}
+    \item{¿Qué dificultades se encontraron?}
+    \item{Definir objetivos de la reunión.}
+    \item{¿Qué se va a hacer para la próxima reunión?}
+  \end{itemize}
+}
+\subsection{Toma de decisiones.}{
+  \begin{itemize}
+    \item{Plantear el problema.}
+    \item{Establecer el plan de acción.}
+    \item{Repartir trabajo.}
+  \end{itemize}
+}
+
+\section{Administración.}
+\subsection{Planeación general.}{
+\subsubsection{Objetivos.}{
+  \begin{itemize}
+    \item{Desarrollar un sistema que simule la ejecución de algoritmos
+      distribuidos sobre algún conjunto de procesos.}
+    \item{Crear una interfaz gráfica que represente esta simulación.}
+  \end{itemize}
+}
+\subsubsection{Restricciones.}{
+  \begin{itemize}
+    \item{El sistema debe ser compatible con Mac y Linux.}
+    \item{El lenguaje de programación a usar es Python 3.}
+  \end{itemize}
+}
+\subsubsection{Fechas.}{
+  \begin{center}
+  \begin{tabular}{ p{0.85\textwidth} | p{0.15\textwidth}}
+    Descripción & Fecha \\\hline
+    Desarrollar la simulación del paso de mensajes entre $n$ procesos y el
+    retorno de algún valor de aceptación. & 27/07/2020\\
+  \end{tabular}
+  \end{center}
+}
+}
+\subsection{Detalles particulares.}{
+\begin{itemize}
+  \item{Definir actividades, quién las hace y fecha de entrega.}
+  \item{Dar seguimiento al tablero.}
+  \item{Actualizar Repositorio.}
+  \item{Registrar Cambios.}
+\end{itemize}
+\subsubsection{Actividades.}{
+  \begin{center}
+  \begin{tabular}{  p{0.65\textwidth} | p{0.20\textwidth} | p{0.15\textwidth}}
+    Descripción & Autor & Fecha \\\hline\hline
+    Estructurar repositorio según se acordó (\nameref{enlaces}). & Alan &
+      15/07/2020 \\\hline
+    Crear carpeta de google Drive (\nameref{enlaces}). & Alan &
+    15/07/2020 \\\hline
+    Hacer diagrama de clases (\nameref{clases}). & Alan &
+      15/07/2020 \\\hline
+    Establecer estructura de archivos (\nameref{paquetes}). & Jerónimo &
+      15/07/2020 \\\hline
+    Dar descripción del diagrama de clases (\nameref{clases}). & Jerónimo &
+      15/07/2020 \\\hline
+  \end{tabular}
+  \end{center}
+}
+\subsubsection{Cambios.}{
+  \begin{center}
+  \begin{tabular}{  p{0.65\textwidth} | p{0.20\textwidth} | p{0.15\textwidth}}
+    Descripción & Autor & Fecha \\\hline\hline
+  \end{tabular}
+  \end{center}
+}
+}
+
+\section{Requerimientos.}
+\begin{itemize}
+  \item{Modelar un proceso que envíe y reciba mensajes. Una clase
+    \texttt{proceso} simula al proceso y contiene la funcinalidad para recibir y
+    enviar mensajes.
+  }
+  \item{Una clase que según los parámetros recibidos, construya una simulación
+    del sistema utilizando los procesos anteriormente mencionados.
+  }
+  \item{\textbf{Pendiente} Paso de mensajes y sincronización.}
+\end{itemize}
+
+\section{Diseño.}
+\begin{itemize}
+  \item{Identificar componentes.}
+  \item{Definir interacción e integración de las componentes.
+    \begin{enumerate}
+      \item{Abstraer.}
+      \item{Separar conceptos.}
+      \item{Modularizar.}
+      \item{Acoplar.}
+    \end{enumerate}
+  }
+  \item{Definir arquitectura.}
+  \item{Identificar lenguaje(s) y herramientas.}
+  \item{Hacer diagrama de paquetes.}
+  \item{Identificar clases y sus relaciones.}
+  \item{Hacer diagramas de secuencia y de navegación.}
+\end{itemize}
+\subsection{Componentes.}{
+\begin{itemize}
+  \item{Proceso.}
+  \item{Constructor del sistema. Permite instanciar procesos, pasar parámetros e
+    iniciar la simulación.
+  }
+\end{itemize}
+}
+\subsection{Arquitectura.}{
+  MVC.\\
+  Primera entrega consiste solamente de una parte del modelo (procesos y
+  constructor).
+}
+\subsection{Lenguaje(s) y herramientas.}{
+\subsubsection{Lenguaje(s).}{
+  \texttt{Python 3: }\url{https://www.python.org/}\\
+}
+\subsubsection{Herramientas.}{
+  \texttt{Simpy: } \url{https://simpy.readthedocs.io/en/latest/contents.html}
+    \cite{Simpy}\\
+  \texttt{NetworkX: } \url{https://networkx.github.io/}\\
+  \texttt{NetworkX Viewer: } \url{https://pypi.org/project/networkx_viewer/}\\
+}
+}
+\subsection{Diagrama de paquetes.}{
+  \label{paquetes}
+  \dirtree{%
+    .1 simuladorComputoDistribuido.
+      .2 README$.$md  .
+      .2 simulador.
+        .3 LICENSE.
+        .3 README$.$md .
+        .3 simulador.
+          .4 proceso$.$py.
+          .4 constructor$\_$del$\_$sistema$.$py.
+        .3 setup.
+        .3 tests.
+          .4 prueba$\_$unitaria$.$py.
+      .2 documentos.
+        .3 EstructuraDeSistema$.$tex .
+  }
+}
+\subsection{Diagrama de clases.}{
+  \label{clases}
+}
+
+\section{Desarrollo.}
+\subsection{Preparación.}{
+  \begin{itemize}
+    \item{Instalar herramientas de desarrollo.}
+    \item{Definir estrategia de construcción.}
+    \item{Establecer estándar de documentación.}
+  \end{itemize}
+}
+\subsection{Programación.}{
+  \begin{itemize}
+    \item{Generar el código de cada componente siguiendo estándares y los
+    principios de modularidad y anticipando posibles cambios.
+    }
+    \item{Coordinar cambios con el resto de los integrantes.}
+    \item{Desarrollar pruebas y probar código.}
+  \end{itemize}
+}
+
+\section{Extras.}
+\subsection{Enlaces.}{
+  \label{enlaces}
+  \begin{itemize}
+    \item{\textbf{Repositorio: }  \url{https://github.com/SimuladorComputoDistribuido/simuladorComputoDistribuido/}}
+    \item{\textbf{Google Drive: } \url{https://drive.google.com/drive/folders/1TPISkVK6i3M-eNBr38q2rvlAkLRuWCDY}}
+  \end{itemize}
+}
+\subsection{Convenciones.}{
+\subsubsection{Documentación.}{
+  La documentación del código es generada con el paquete pdoc
+  (\url{https://pdoc3.github.io/pdoc/}) y está generada según el estándar
+  establecido en la norma PEP-257
+  (\url{https://www.python.org/dev/peps/pep-0257/}).\\
+  Los archivos README siguen el estándar de GitHub Flavored Markdown
+  (\url{https://github.github.com/gfm/}).
+}
+
+\subsubsection{Formatos.}{
+  \begin{itemize}
+    \item{\textbf{Formato de fecha:} dd/mm/aaaa}
+    \item{\textbf{Campo de autor:} Primer nombre seguido de la primera letra de
+      los apellidos en caso de que los participantes tengan el mismo nombre.
+    }
+  \end{itemize}
+}
+\subsection{Notas}{
+  \begin{enumerate}
+    \item{Esta plantilla esta basada en las notas de clase del curso de
+      ingeniería del software impartido por Guadalupe Ibargüengoitia G. y Hanna
+      Oktaba.\\
+      Abarca el material cubierto en las presentaciones 3 (Prácticas sociales y
+      de trabajo en equipo) - 7 (Construcción de software).
+    }
+  \end{enumerate}
+}
+}
+
+\bibliographystyle{acm}
+\bibliography{bibliografia}
+
+\end{document}
