@@ -1,39 +1,43 @@
 import simpy
 
-def sample(process):
+def pop(process):
     while True:
-        print('Time at %d' % process.env.now)
-        time = 1
-        yield process.env.timeout(time)
-        print('Ping at %d' % process.env.now)
+        process.show("START")
+        yield process.wait(2)
+        process.show("POP")
 
 def ping(process):
     while True:
-        print('Ping %s at t=%d' % (process.name, process.env.now))
-        process.send_all("Forward")
+        process.show("PING")
+        process.send_all("<OK-F>")
         try:
-            yield process.env.process(process.wait())
+            yield process.wait()
         except simpy.Interrupt as msg:
-            print('RECEIVED %s , msg: %s at t=%d' % (process.name, msg.cause, process.env.now))
+            process.show("RE " + msg.cause)
 
 def pong(process):
     while True:
-        #print('Waiting %s ' % process.name)
         try:
-            yield process.env.process(process.wait())
+            yield process.wait()
         except simpy.Interrupt as msg:
-            print('Pong %s , msg: %s at t=%d' % (process.name, msg.cause, process.env.now))
+            process.show("PONG " + msg.cause)
             process.send_all("Backward")
 
 def simple_flood_leader(process):
-    while True:
-        send_all("v")
+    process.show("SENT <M>")
+    process.send_all("<M>")
+    try:
+        yield process.wait()
+    except simpy.Interrupt as msg:
+        pass
 
 def simple_flood(process):
     flag = False
     while True:
         try:
-            yield process.env.process(process.wait())
+            yield process.wait()
         except simpy.Interrupt as msg:
-            print('Pong %s , msg: %s at t=%d' % (process.name, msg.cause, process.env.now))
-            process.send_all("Backward")
+            if not flag:
+                process.show("RE " + msg.cause)
+                process.send_all("<M>")
+                flag = True

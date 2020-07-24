@@ -1,6 +1,6 @@
 import simpy
 
-class Proceso(object):
+class Process(object):
     """docstring for ."""
 
     def __init__(self, sys, name, blackbox):
@@ -18,14 +18,20 @@ class Proceso(object):
         for process in self.neighbors:
             self.sys.deliver(message, process)
 
-    def wait(self):
+    def wait_to_infinity(self):
         yield self.env.timeout(simpy.core.Infinity)
 
-    def wait_message(self):
-        try:
-            yield self.env.process(self.wait())
-        except simpy.Interrupt as msg:
-            return msg
+    def wait_time(self, time):
+        yield self.env.timeout(time)
+
+    def wait(self, time=None):
+        if time is None:
+            return self.env.process(self.wait_to_infinity())
+        else:
+            return self.env.process(self.wait_time(time))
+
+    def show(self, message):
+        print('Process %s | %s | at t=%d' % (self.name, message, self.env.now))
 
     def __str__(self):
         return self.name

@@ -1,7 +1,7 @@
 import networkx as nx
 import simpy
 
-class Sistema(object):
+class System(object):
     """docstring for ."""
 
     def __init__(self):
