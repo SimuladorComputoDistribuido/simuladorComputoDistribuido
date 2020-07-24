@@ -5,7 +5,7 @@ class Sistema(object):
     """docstring for ."""
 
     def __init__(self):
-        self.environment = simpy.Environment()
+        self.env = simpy.Environment()
         self.network = nx.Graph()
         self.processes = None
 
@@ -25,7 +25,16 @@ class Sistema(object):
     def get_neighbors(self, process):
         return self.network.neighbors(process)
 
-    def simulate(time):
+    def set_network(self):
         for process in self.processes:
-            env.process(process)
-        self.environment.run(until=time)
+            process.set_neighbors(self.get_neighbors(process))
+
+    def message_delay(self, message, process):
+        yield self.env.timeout(1)
+        process.action.interrupt(cause=message)
+
+    def deliver(self, message, process):
+        self.env.process(self.message_delay(message, process))
+
+    def simulate(self, time):
+        self.env.run(until=time)
